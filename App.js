@@ -7,22 +7,29 @@ import PortfolioStackScreen from './routes/PortfolioStackNav'
 import CustomDrawerContent from './components/CustomDrawerContent'
 import DrawerNav from './routes/DrawerNav'
 import Login from './screens/Login'
-import {createStackNavigator} from '@react-navigation/stack'
+import { createStackNavigator } from '@react-navigation/stack'
+import store from './redux/store';
+import { Provider } from "react-redux";
+
 
 
 
 const Stack = createStackNavigator();
 export default function App() {
   return (
-    <NavigationContainer style={styles.container}>
-      <Stack.Navigator
-      initialRouteName='Login'
-      screenOptions={{headerShown:false}}
-      >
-        <Stack.Screen name="Login" component={Login} options={{title:"Connexion"}}/>
-        <Stack.Screen name="Home" component={DrawerNav} />
-      </Stack.Navigator>
-    </NavigationContainer>
+
+    <Provider store={store}>
+      <NavigationContainer style={styles.container}>
+        <Stack.Navigator
+          initialRouteName='Login'
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="Login" component={Login} options={{ title: "Connexion" }} />
+          <Stack.Screen name="Home" component={DrawerNav} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
+
   );
 }
 
